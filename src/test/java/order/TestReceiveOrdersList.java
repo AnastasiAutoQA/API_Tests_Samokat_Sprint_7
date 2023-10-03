@@ -1,0 +1,35 @@
+package order;
+import org.example.apiConfig.OrderApiConfig;
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
+import io.restassured.response.ValidatableResponse;
+import org.example.testDataModels.Orders;
+import org.junit.Before;
+import org.junit.Test;
+import static java.net.HttpURLConnection.*;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+public class TestReceiveOrdersList {
+    private OrderApiConfig orderConfig;
+    private int statusCode;
+    private Orders orders;
+
+    @Before
+    public void setUp() {
+        orderConfig = new OrderApiConfig();
+    }
+
+    @DisplayName("Получение списка заказов")
+    @Description("Проверить, что в тело ответа возвращается список заказов")
+    @Test
+    public void shouldReceiveOderList() {
+        ValidatableResponse receiveResponse = orderConfig.getOrderList(); // Получаем список заказов
+        statusCode = receiveResponse.extract().statusCode(); // Получаем статус код ответа (должно быть 200 при успешном)
+        orders = receiveResponse.extract().body().as(Orders.class); // Получили список заказов
+
+        assertEquals("The status code is invalid", HTTP_OK, statusCode); // Сравнили статус коды, задали сообщ об ошибке, если они не равны
+        assertNotNull("The list of orders is not provided", orders); // Проверили, что полученный список не пустой
+    }
+}
