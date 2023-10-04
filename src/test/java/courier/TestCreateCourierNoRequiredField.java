@@ -1,7 +1,7 @@
 package courier;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.example.apiConfig.CourierApiConfig;
-import org.example.testDataModels.Courier;
+import org.example.api_config.CourierApiConfig;
+import org.example.test_data_models.Courier;
 import org.junit.Before;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;

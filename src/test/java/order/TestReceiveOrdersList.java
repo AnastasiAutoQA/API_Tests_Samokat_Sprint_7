@@ -1,13 +1,12 @@
 package order;
-import org.example.apiConfig.OrderApiConfig;
+import org.example.api_config.OrderApiConfig;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.example.testDataModels.Orders;
+import org.example.test_data_models.Orders;
 import org.junit.Before;
 import org.junit.Test;
 import static java.net.HttpURLConnection.*;
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

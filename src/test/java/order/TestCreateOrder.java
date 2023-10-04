@@ -1,7 +1,7 @@
 package order;
-import org.example.apiConfig.OrderApiConfig;
-import org.example.testDataModels.OrderAutoGenerator;
-import org.example.testDataModels.OrderRequest;
+import org.example.api_config.OrderApiConfig;
+import org.example.test_data_models.OrderAutoGenerator;
+import org.example.test_data_models.OrderRequest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;

@@ -1,7 +1,9 @@
 package courier;
-import org.example.apiConfig.CourierApiConfig;
-import org.example.testDataModels.Courier;
-import org.example.testDataModels.CourierAutoGenerator;
+import org.example.api_config.CourierApiConfig;
+import org.example.test_data_models.Courier;
+import org.example.test_data_models.CourierAutoGenerator;
+import org.example.test_data_models.CourierLogin;
+import org.junit.After;
 import org.junit.Before;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -14,6 +16,7 @@ public class TestDuplicatedCourierError {
     private CourierApiConfig courierCreate;
     private Courier courier;
     private int statusCode;
+    private int courierId;
 
     @Before
     public void setUp() {
@@ -36,6 +39,11 @@ public class TestDuplicatedCourierError {
 
         assertEquals("The status code is invalid", HTTP_CONFLICT, statusCode);
         assertEquals("The courier is already created", "Этот логин уже используется. Попробуйте другой.", isCourierCreated);
+
+        ValidatableResponse loginResponse = courierCreate.loginCourierAndCheckResponse(CourierLogin.fromCourier(courier));
+        courierId = loginResponse.extract().path("id"); // Взяли id курьера - id возвращается при логине под курьером
+        assertTrue("The courier ID is not provided", courierId != 0);
+
     }
 
     @DisplayName("Тело ответа содержит ошибку, если используется тот же логин")
@@ -59,6 +67,14 @@ public class TestDuplicatedCourierError {
 
         assertEquals("The status code is invalid", HTTP_CONFLICT, statusCode);
         assertEquals("The courier is already created", "Этот логин уже используется. Попробуйте другой.", isCourierCreated);
+
+        ValidatableResponse loginResponse = courierCreate.loginCourierAndCheckResponse(CourierLogin.fromCourier(courier1));
+        courierId = loginResponse.extract().path("id"); // Взяли id курьера - id возвращается при логине под курьером
+    }
+    // Удалили курьера по его id
+    @After
+    public void clearDown() {
+        courierCreate.deleteCourier(courierId);
     }
 }
 

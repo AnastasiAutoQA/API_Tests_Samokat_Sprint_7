@@ -1,12 +1,12 @@
 package order;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.example.apiConfig.OrderApiConfig;
+import org.example.api_config.OrderApiConfig;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.example.testDataModels.Order;
-import org.example.testDataModels.OrderAutoGenerator;
-import org.example.testDataModels.OrderRequest;
+import org.example.test_data_models.Order;
+import org.example.test_data_models.OrderAutoGenerator;
+import org.example.test_data_models.OrderRequest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

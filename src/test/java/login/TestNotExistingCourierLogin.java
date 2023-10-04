@@ -1,11 +1,11 @@
 package login;
-import org.example.apiConfig.CourierApiConfig;
-import org.example.testDataModels.Courier;
+import org.example.api_config.CourierApiConfig;
+import org.example.test_data_models.Courier;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
-import org.example.testDataModels.CourierAutoGenerator;
-import org.example.testDataModels.CourierLogin;
+import org.example.test_data_models.CourierAutoGenerator;
+import org.example.test_data_models.CourierLogin;
 import org.junit.Before;
 import org.junit.Test;
 import static java.net.HttpURLConnection.*;

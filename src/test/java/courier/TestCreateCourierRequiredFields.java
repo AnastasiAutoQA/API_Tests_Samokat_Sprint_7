@@ -1,8 +1,8 @@
 package courier;
-import org.example.apiConfig.CourierApiConfig;
-import org.example.testDataModels.Courier;
-import org.example.testDataModels.CourierAutoGenerator;
-import org.example.testDataModels.CourierLogin;
+import org.example.api_config.CourierApiConfig;
+import org.example.test_data_models.Courier;
+import org.example.test_data_models.CourierAutoGenerator;
+import org.example.test_data_models.CourierLogin;
 import org.junit.After;
 import org.junit.Before;
 import io.qameta.allure.Description;
@@ -38,11 +38,9 @@ public class TestCreateCourierRequiredFields {
         assertTrue("The courier is not created", isCourierCreated); // В респонсе должен быть "ok"
 
         // Авторизуемся под созданным курьером с логином и паролем
-        // и получаем id курьера в респонсе на логин
+        // и получаем id курьера в респонсе на логин, чтоб его удалить в After
         ValidatableResponse loginResponse = courierCreate.loginCourierAndCheckResponse(CourierLogin.fromCourier(courier));
         courierId = loginResponse.extract().path("id");
-
-        assertTrue("The courier ID is not provided", courierId != 0); // Проверяем, что id курьера не нулевое
     }
 
     // Удаляем курьера по его id

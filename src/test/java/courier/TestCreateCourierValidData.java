@@ -1,8 +1,8 @@
 package courier;
-import org.example.apiConfig.CourierApiConfig;
-import org.example.testDataModels.Courier;
-import org.example.testDataModels.CourierAutoGenerator;
-import org.example.testDataModels.CourierLogin;
+import org.example.api_config.CourierApiConfig;
+import org.example.test_data_models.Courier;
+import org.example.test_data_models.CourierAutoGenerator;
+import org.example.test_data_models.CourierLogin;
 import org.junit.After;
 import org.junit.Before;
 import io.qameta.allure.Description;
@@ -39,10 +39,9 @@ public class TestCreateCourierValidData {
         assertEquals("The status code is invalid", HTTP_CREATED, statusCode); // Сравнили статус коды и ответ
         assertTrue("The courier is not created", isCourierCreated);
 
+        //Логинимся и забираем из респонса id курьера, чтоб его удалить в After
         ValidatableResponse loginResponse = courierCreate.loginCourierAndCheckResponse(CourierLogin.fromCourier(courier));
         courierId = loginResponse.extract().path("id"); // Взяли id курьера - id возвращается при логине под курьером
-
-        assertTrue("The courier ID is not provided", courierId != 0);
     }
 
     // Удалили курьера по его id
